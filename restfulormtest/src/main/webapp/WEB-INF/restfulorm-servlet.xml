@@ -18,17 +18,20 @@
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	<mvc:annotation-driven />
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"  
-        p:ignoreDefaultModelOnRedirect="true" >  
-        <property name="messageConverters">  
-            <list>  
-                <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>  
-            </list>  
-        </property>  
-    </bean>  
+
+    <bean id="jacksonMessageConverter"  
+	    class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+	</bean>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jacksonMessageConverter" />
+            </list>
+        </property>
+    </bean> 
 	<!-- 视图层配置 -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="\WEB-INF\pages\" />
 		<property name="suffix" value=".jsp" />
 	</bean>
