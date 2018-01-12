@@ -1,12 +1,12 @@
 package cn.cyphertech.restfulormtest;
 
 public class Hello {
-	private final long id;
-    private final String content;
+	private long id;
+    private String content;
 
-    public Hello(long id, String content) {
-        this.id = id;
-        this.content = content;
+    public Hello() {
+    	this.id = 10L;
+    	this.content = "hello";
     }
 
     public long getId() {
@@ -15,5 +15,13 @@ public class Hello {
 
     public String getContent() {
         return content;
+    }
+    
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }
